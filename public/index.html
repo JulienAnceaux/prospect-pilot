@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Prospect Pilot transforme une zone et un métier en liste de prospects qualifiés." />
+    <title>Prospect Pilot</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main>
+      <section id="loginView" class="login-shell">
+        <div class="brand brand-login"><span class="brand-mark">P</span><span>Prospect Pilot</span></div>
+        <form id="loginForm" class="login-card">
+          <p class="eyebrow">Accès sécurisé</p>
+          <h1>Votre prospection,<br />prête en quelques minutes.</h1>
+          <p class="muted">Connectez-vous pour rechercher, qualifier et exporter vos prochains prospects.</p>
+          <label for="password">Mot de passe</label>
+          <input id="password" type="password" autocomplete="current-password" required />
+          <button type="submit">Accéder à l’espace</button>
+          <p id="loginError" class="error" role="alert"></p>
+        </form>
+      </section>
+
+      <section id="appView" class="app-shell" hidden>
+        <aside class="sidebar">
+          <div class="brand"><span class="brand-mark">P</span><span>Prospect Pilot</span></div>
+          <nav>
+            <a class="active" href="#search"><span>⌕</span> Nouvelle recherche</a>
+            <a href="#results"><span>↗</span> Résultats</a>
+          </nav>
+          <div class="sidebar-note">
+            <span class="status-dot"></span>
+            <div><strong>Clés protégées</strong><small>Les accès API restent côté serveur.</small></div>
+          </div>
+          <button id="logoutButton" class="ghost">Se déconnecter</button>
+        </aside>
+
+        <div class="workspace">
+          <header>
+            <div>
+              <p class="eyebrow">Moteur de prospection B2B</p>
+              <h1>Transformez une recherche en opportunités.</h1>
+            </div>
+            <span class="secure-pill">● Connexion sécurisée</span>
+          </header>
+
+          <section id="search" class="search-panel">
+            <div class="search-copy">
+              <h2>Nouvelle recherche</h2>
+              <p>Choisissez une activité et une zone. L’outil trouve les entreprises, leurs contacts publics et les classe par potentiel.</p>
+            </div>
+            <form id="searchForm" class="search-form">
+              <label>Activité recherchée
+                <input id="keyword" name="keyword" value="agence immobilière" required maxlength="60" />
+              </label>
+              <label>Ville ou zone
+                <input id="location" name="location" placeholder="Ex. Hossegor" required maxlength="60" />
+              </label>
+              <label>Nombre de prospects
+                <select id="resultLimit" name="limit">
+                  <option value="20">20 — test rapide</option>
+                  <option value="40">40 prospects</option>
+                  <option value="60">60 prospects</option>
+                  <option value="100">100 prospects</option>
+                </select>
+                <small id="volumeHint">1 page Google · enrichissement par lots sécurisés</small>
+              </label>
+              <button id="searchButton" type="submit"><span>⌕</span> Lancer la recherche</button>
+            </form>
+            <div id="progress" class="progress" hidden>
+              <span class="spinner"></span>
+              <div class="progress-copy">
+                <strong id="progressTitle">Recherche et enrichissement en cours…</strong>
+                <small id="progressDetail">Interrogation de Google Places.</small>
+                <span class="progress-track"><span id="progressBar"></span></span>
+              </div>
+            </div>
+            <p id="searchError" class="error" role="alert"></p>
+          </section>
+
+          <section id="results" class="results-section" hidden>
+            <div class="results-heading">
+              <div>
+                <p class="eyebrow">Dernière recherche</p>
+                <h2 id="resultsTitle">Prospects trouvés</h2>
+              </div>
+              <div class="export-actions">
+                <button id="exportCsv" class="secondary">Exporter CSV</button>
+                <button id="exportExcel">Exporter Excel</button>
+              </div>
+            </div>
+            <div class="metrics">
+              <article><span>Entreprises</span><strong id="metricCompanies">0</strong></article>
+              <article><span>Avec email</span><strong id="metricEmails">0</strong></article>
+              <article><span>Prioritaires</span><strong id="metricPriority">0</strong></article>
+              <article><span>Score moyen</span><strong id="metricScore">0</strong></article>
+            </div>
+            <div class="table-card">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Prospect</th>
+                    <th>Contact</th>
+                    <th>Structure</th>
+                    <th>Score</th>
+                    <th>Priorité</th>
+                  </tr>
+                </thead>
+                <tbody id="resultsBody"></tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+    <script src="/app.js" defer></script>
+  </body>
+</html>

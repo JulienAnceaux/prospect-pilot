@@ -1,0 +1,10 @@
+{
+  "name": "prospect-pilot-mvp",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vercel dev",
+    "check": "node --check api/_lib/auth.mjs && node --check api/login.mjs && node --check api/search.mjs && node --check api/enrich.mjs && node --check public/app.js"
+  }
+}
